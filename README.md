@@ -8,7 +8,7 @@ A CpManager applikáció versenyek kezelésére szolgál. Az admin versenyeket t
 - Program elhelyezése ide: `C:\xampp\htdocs\competition_manager`
 - XAMPP megnyitása, Apache és MySQL elindítása (Start)
 - Böngészőn keresztül megnyitni: `localhost/competition_manager/public`
-- Terminálba bevinni: `go ide C:\xampp\htdocs\competition_manager`, aztán:
+- Terminálba bevinni: `cd C:/xampp/htdocs/competition_manager`, aztán:
   - `php artisan migrate`
   - `php artisan migrate:fresh --seed`
 
