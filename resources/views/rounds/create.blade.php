@@ -6,7 +6,7 @@
         <div class="form-group ">
             {{Form::label('round','Round')}}
             <div>
-            {{ Form::select('round', array('1st round' => '1st round', '2nd round' => '2nd round', '3rd round' => '3rd round', '4th round' => '4th round', '5th round' => '5th round', 'final round' => 'final round'), $default, ['class' => 'my-dropdown']) }}
+                {{Form::text('round','',['class' => 'form-control', 'placeholder' => '1st round'])}}
             </div>
         </div>
         <div class="form-group">

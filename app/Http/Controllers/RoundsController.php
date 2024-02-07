@@ -31,33 +31,8 @@ class RoundsController extends Controller
         $comp = new Competition;
         $comp->name = $name;
         $comp->year = $year;
-        $round1 = DB::select('SELECT*
-                               FROM rounds
-                               WHERE "'.$name.'" = competition_name and "'.$year.'" = competition_year
-                               and (round = "1st round" or round = "2nd round" or round = "3rd round" or round = "4th round" or round = "5th round" or round = "final round")');
 
-        $cr = count($round1) + 1;
-        switch ($cr) {
-            case 1:
-                $default = "1st round";
-                break;
-            case 2:
-                $default = "2nd round";
-                break;
-            case 3:
-                $default = "3rd round";
-                break;
-            case 4:
-                $default = "4th round";
-                break;
-            case 5:
-                $default = "5th round";
-                break;
-            case 6:
-                $default = "final round";
-                break;
-        }
-        return view('rounds.create')->withComp($comp)->withDefault($default);
+        return view('rounds.create')->withComp($comp);
     }
 
     /**
@@ -122,6 +97,7 @@ class RoundsController extends Controller
     public function update(Request $request, string $id)
     {
         $round = Round::find($id);
+        $round->round = $request->input('round');
         $round->description = $request->input('description');
         $round->deadline = $request->input('deadline');
         $round->save();
