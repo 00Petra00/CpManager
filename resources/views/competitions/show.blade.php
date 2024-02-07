@@ -16,7 +16,7 @@
             {!! Form::open(['action' => ['App\Http\Controllers\CompetitionsController@destroy', $comp->name, $comp->year], 'method' => 'POST']) !!}
                 <a href="{{$comp->year}}/edit" class="btn btn-secondary">Edit</a>
                 {{Form::hidden('_method', 'DELETE')}}
-                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                {{Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure you want to delete this competition?')"])}}
             {!! Form::close() !!}
         @endif
     @endif

@@ -145,15 +145,16 @@ class CompetitionsController extends Controller
      */
     public function destroy(string $name, int $year)
     {
+        if(auth()->user()->name !== 'admin' || auth()->user()->email !== 'admin@admin.com'){
+            return redirect('/competitions')->with('error', 'Unauthorized Page');
+        }
+
         $comps = DB::table('competitions')
         ->where('name', '=', $name)
         ->where('year', '=', $year)
         ->delete();
 
-        if(auth()->user()->name !== 'admin' || auth()->user()->email !== 'admin@admin.com'){
-            return redirect('/competitions')->with('error', 'Unauthorized Page');
-        }
-
         return redirect('/competitions')->with('success', 'Competition Removed');
+
     }
 }
