@@ -52,6 +52,10 @@ class CompetitionsController extends Controller
             'year' => 'required'
         ]);
 
+        if($request->input('year') > date("Y")+10){
+            return redirect('/competitions/create')->with('error', 'The year cannot be greater than '.date("Y")+10);
+        }
+
         $comp = DB::table('competitions')
         ->where('competitions.name', '=', $request->input('name'))
         ->where('year', '=', $request->input('year'))
