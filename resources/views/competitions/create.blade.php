@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             {{Form::label('year','Year')}}
-            {{Form::number('year','',['class' => 'form-control', 'placeholder' => '2000', 'min' => 2000, 'max' => 2024])}}
+            {{Form::number('year','',['class' => 'form-control', 'placeholder' => date("Y"), 'min' => date("Y"), 'max' => date("Y")+10])}}
         </div>
         <div class="form-group">
             {{Form::label('description','Description')}}

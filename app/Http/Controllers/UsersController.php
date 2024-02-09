@@ -109,10 +109,16 @@ class UsersController extends Controller
         if (!(Hash::check($request->input('old'), $user->password))){
             return redirect('/users/'.$id)->with('error', 'Wrong Password');
         }
-        $user->password = Hash::make($request->input('new'));
-        $user->save();
+        if($request->input('new') === $request->input('conf_new'))
+        {
+            $user->password = Hash::make($request->input('new'));
+            $user->save();
 
-        return redirect('/users/'.$id)->with('success', 'Successful password change');
+            return redirect('/users/'.$id)->with('success', 'Successful password change');
+        }
+        else{
+            return redirect('/users/'.$id)->with('error', 'Password and Confirm Password do not match');
+        }
     }
 
     /**

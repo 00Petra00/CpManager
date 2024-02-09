@@ -12,7 +12,7 @@
                     {!! Form::open(['action' => ['App\Http\Controllers\RoundsController@destroy', $round->id], 'method' => 'POST']) !!}
                         {{Form::hidden('_method', 'DELETE')}}
                         <a href="{{$round->id}}/edit" class="btn btn-secondary">Edit</a>
-                        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                        {{Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure you want to delete this round?')"])}}
                     {!! Form::close() !!}
 
                 @endif

@@ -52,6 +52,10 @@ class CompetitionsController extends Controller
             'year' => 'required'
         ]);
 
+        if($request->input('year') > date("Y")+10){
+            return redirect('/competitions/create')->with('error', 'The year cannot be greater than '.date("Y")+10);
+        }
+
         $comp = DB::table('competitions')
         ->where('competitions.name', '=', $request->input('name'))
         ->where('year', '=', $request->input('year'))
@@ -141,15 +145,16 @@ class CompetitionsController extends Controller
      */
     public function destroy(string $name, int $year)
     {
+        if(auth()->user()->name !== 'admin' || auth()->user()->email !== 'admin@admin.com'){
+            return redirect('/competitions')->with('error', 'Unauthorized Page');
+        }
+
         $comps = DB::table('competitions')
         ->where('name', '=', $name)
         ->where('year', '=', $year)
         ->delete();
 
-        if(auth()->user()->name !== 'admin' || auth()->user()->email !== 'admin@admin.com'){
-            return redirect('/competitions')->with('error', 'Unauthorized Page');
-        }
-
         return redirect('/competitions')->with('success', 'Competition Removed');
+
     }
 }

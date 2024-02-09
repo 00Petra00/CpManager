@@ -41,7 +41,7 @@
     <script>
         function deleteCompetitor(user_id, round_id)
         {
-            if(confirm("Do you realy want to delete this record?"))
+            if(confirm("Are you sure you want to delete this record?"))
             {
                 $.ajax({
                     url: '/competitors/'+ user_id +'/' + round_id,
